@@ -228,7 +228,7 @@ function fact(x) {
 ## Time Compelexity
 - speed depends on the pivot point
 - on average O(n log n) => merge-sort
-- worse case O(n ** 2)=> selection Sort 
+- worse case O(n²) => selection Sort 
 
 
 ## How to implement a quicksort algorithm in JavaScript
