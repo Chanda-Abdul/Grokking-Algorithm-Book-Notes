@@ -215,8 +215,6 @@ function fact(x) {
 
 # Chapter 4 - Quicksort
 
-
-## Quicksort
 - Implement a Quicksort function using a divide-and-conquer approach
   - divide-and-conquer are recursive algorithms
   - figure out the base case(simplest solution)
