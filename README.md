@@ -280,5 +280,133 @@ const sortedArray = quickSort(items, 0, items.length-1)
 console.log(sortedArray)
 ````
 
+* see more https://github.com/ChandaHubbard/DSA-Sorting
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/quick-sort
+
+# Chapter 5 - Hash Tables
+
+Hash tables are a powerful data structure because they’re so fast and they let you model data in a different way.
+- You can make a hash table by combining a hash function with an array.
+- Collisions are bad. You need a hash function that minimizes collisions.
+- Hash tables have really fast search, insert, and delete.
+- Hash tables are good for modeling relationships from one item to another item.
+- Once your load factor is greater than 0.7, it’s time to resize your hash table.
+- Hash tables are used for caching data (for example, with a web server).
+- Hash tables are great for catching duplicates.
+
+## Hash Functions
+A <b>hash function</b> is a function where you put in a string and you get back a number.
+- The hash function consistently maps a name to the same index. 
+- Put a hash function and an array together, and you get a data structure called a hash table.
+- Arrays and lists map straight to memory, but hash tables are smarter. They use a hash function to intelligently figure out where to store elements.
+- in JavaScript hash tables are objects
+- A good hash function distributes values in the array evenly.
+- A bad hash function groups values together and produces a lot of collisions.
+
+## Implementation
+```
+class HashMap {
+  constructor (initialCapacity=8) {
+    this.length = 0;
+    this._hashTable = [];
+    this._capacity = initialCapacity;
+    this._deleted = 0;
+  }
+  
+    get(key) {
+    const index = this._findSlot(key);
+    if (this._hashTable[index] === undefined) {
+      throw new Error('key error');
+    }
+    return this._hashTable[index].value;
+  }
+  
+   set (key, value) {
+    const loadRatio = (this.length + this._deleted + 1) / this._capacity;
+    if (loadRatio > HashMap.MAX_LOAD_RATIO) {
+      this._resize(this._capacity * HashMap.SIZE_RATIO);
+    }
+    //Find the slot where this key should be in 
+    const index = this._findSlot(key);
+    
+    if(!this._hashTable[index]) {
+      this.length++;
+    }
+    this._hashTable[index] = {
+      key,
+      value,
+      DELETED: false
+    };
+  }
+  
+    delete(key) {
+    const index = this._findSlot(key);
+    const slot = this._hashTable[index];
+    if (slot === undefined) {
+      throw new Error('key error');
+    }
+    slot.DELETED = true;
+    this.length--;
+    this._deleted++;
+  }
+  
+  _findSlot(key) {
+      const hash = HashMap._hashString(key);
+      const start = hash % this._capacity;
+      
+      for (let  i=start; i<start + this._capacity; i++) {
+        const index = i % this._capacity;
+        const slot = this._hashTable[index];
+        if (slot === undefined || (slot.key === key && !slot.DELETED)) {
+        return index;
+      }
+    }
+  }
+  
+  _resize(size) {
+    const oldSlots = this._hashTable;
+    this._capacity = size;
+    //Reset the length - it will get rebuilt as you add the items back
+    this.length = 0;
+    this._hashTable = [];
+    
+    for (const slot of oldSlots) {
+      if (slot !== undefined) {
+        this.set(slot.key, slot.value);
+      }
+    }
+  }
+  
+  static _hashString(string) {
+    let hash = 5381
+    for (let i = 0; i < string.length; i++) {
+      hash = (hash << 5) + hash + string.charCodeAt(i)
+      
+      hash = hash & hash
+    }
+    return hash >>> 0
+  }
+}
+```
+
+## Collisions
+<b>collisions</b> take place two keys have been assigned the same slot
+-  To avoid collisions, you need
+  - A low load factor, Load factor measures how many empty slots remain in your hash table.
+  - A good hash function
+  
+## Time Complexity
+|   | Averge Case| Worse Case |
+|---|---|---|
+|Search|O(1)|O(n)|
+|Insert|O(1)|O(n)|
+|Delete|O(1)|O(n)|
+#
+
+* see more https://github.com/ChandaHubbard/DSA-Hashmaps
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/hash-table
+
 
 
