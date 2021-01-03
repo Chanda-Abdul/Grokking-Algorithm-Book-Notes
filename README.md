@@ -408,5 +408,62 @@ class HashMap {
 
 * see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/hash-table
 
+# Chapter 6. Breadth-first search 
+
+- <b>Breadth-first search</b> allows you to find the search distance between two points
+
+- shortest path problems are solved with Breadth-first search
+  - moodel the problem as a graph
+  - solve the problem using Breadth-first search 
+
+- A <b>graph</b> models a set of connections which are made of nodes and edges
+- Breadth-first search is a type of algorithm that runs on graphs
+  - is there a path?
+  - what is the shortest path?
+
+- a <b>queue</b> is a type of data structure for BFS.
+  - enqueue to add or `.push()`
+  - dequeue to remove or `.pop()`
+- hash tables
+- directed graphs(one way)
+
+## Time complexity
+
+- Breadth-first search has a run time of `O(V + E)` where V is Verticies and E is Edges
+- Topological sort
+
+## Recap
+- Breadth-first search tells you if there’s a path from A to B.
+- If there’s a path, breadth-first search will find the shortest path.
+- If you have a problem like “find the shortest X,” try modeling your problem as a graph, and use breadth-first search to solve.
+- A directed graph has arrows, and the relationship follows the direction of the arrow (rama -> adit means “rama owes adit money”).
+- Undirected graphs don’t have arrows, and the relationship goes both ways (ross - rachel means “ross dated rachel and rachel dated ross”).
+- Queues are FIFO (First In, First Out).
+- Stacks are LIFO (Last In, First Out).
+- You need to check people in the order they were added to the search list, so the search list needs to be a queue. Otherwise, you won’t get the shortest path.
+- Once you check someone, make sure you don’t check them again. Otherwise, you might end up in an infinite loop.
+
+## Implementation in JavaScript
+````
+const bfs = (node) => { 
+   visited[node] = true;
+   queue.equeue(node); 
+    while (!queue.isEmpty()) {
+        let visiting = queue.dequeue();
+        console.log(`we visited ${visiting}`)
+        for (let j = 0; j < graphAdj[visiting].length; j++) {
+           if ((graphAdj[visiting][j] === 1) && (visited[j] === false)) {  
+           visited[j] = true;
+           queue.equeue(j);
+          }
+       }
+     }
+}
+````
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/breadth-first-search
+* see more https://github.com/ChandaHubbard/DSA-Stack-and-Queue
+
+
 
 
