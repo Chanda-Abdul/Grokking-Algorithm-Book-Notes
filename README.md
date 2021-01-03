@@ -486,3 +486,71 @@ function traverseBFS(root) {
 
 * see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/breadth-first-search
 * see more https://github.com/ChandaHubbard/DSA-Stack-and-Queue
+
+# Chapter 7. Dijkstra’s algorithm
+
+- Breadth-first search will find you the path with the fewest segments (the first graph shown here). What if you want the fastest path instead (the second graph)? You can do that fastest with a different algorithm called <b>Dijkstra’s algorithm</b>.
+
+- There are four steps to Dijkstra’s algorithm:
+
+  - 1.  Find the “cheapest” node. This is the node you can get to in the least amount of time.
+
+  - 2.  Update the costs of the neighbors of this node. 
+
+  - 3.  Repeat until you’ve done this for every node in the graph.
+
+  - 4.  Calculate the final path.
+  
+- When you work with Dijkstra’s algorithm, each edge in the graph has a number associated with it. These are called weights.
+
+- A graph with weights is called a weighted graph. A graph without weights is called an unweighted graph.
+
+- To calculate the shortest path in an unweighted graph, use breadth-first search. To calculate the shortest path in a weighted graph, use Dijkstra’s algorithm. Graphs can also have cycles
+
+- You can’t use Dijkstra’s algorithm if you have negative-weight edges. Negative-weight edges break the algorithm.
+  - you can’t use negative-weight edges with Dijkstra’s algorithm. If you want to find the shortest path in a graph that has negative-weight edges, there’s an algorithm for that! It’s called the Bellman-Ford algorithm
+
+- use hash tables
+
+## Recap
+ - Breadth-first search is used to calculate the shortest path for an unweighted graph.
+ - Dijkstra’s algorithm is used to calculate the shortest path for a weighted graph.
+ - Dijkstra’s algorithm works when all the weights are positive.
+ - If you have negative weights, use the Bellman-Ford algorithm.
+ 
+# Implementation in JavaScript
+````
+djikstraAlgorithm(startNode) {
+   let distances = {};
+
+   // Stores the reference to previous nodes
+   let prev = {};
+   let pq = new PriorityQueue(this.nodes.length * this.nodes.length);
+
+   // Set distances to all nodes to be infinite except startNode
+   distances[startNode] = 0;
+   pq.enqueue(startNode, 0);
+   this.nodes.forEach(node => {
+      if (node !== startNode) distances[node] = Infinity;
+      prev[node] = null;
+   });
+
+   while (!pq.isEmpty()) {
+      let minNode = pq.dequeue();
+      let currNode = minNode.data;
+      let weight = minNode.priority;
+      this.edges[currNode].forEach(neighbor => {
+         let alt = distances[currNode] + neighbor.weight;
+         if (alt < distances[neighbor.node]) {
+            distances[neighbor.node] = alt;
+            prev[neighbor.node] = currNode;
+            pq.enqueue(neighbor.node, distances[neighbor.node]);
+         }
+      });
+   }
+   return distances;
+}
+````
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/dijkstra
+
