@@ -554,3 +554,34 @@ djikstraAlgorithm(startNode) {
 
 * see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/dijkstra
 
+# Chapter 8. Greedy Algoritms
+
+- A greedy algorithm is simple: at each step, pick the optimal move.
+
+- In technical terms: at each step you pick the locally optimal solution, and in the end you’re left with the globally optimal solution.
+
+- power set
+  - Sets are like lists, except sets can’t have duplicates.
+  - You can do some interesting operations on sets, like union, intersection, and difference.
+
+- approximation algorithm
+
+- factorial function 
+
+- NP-complete
+  - Your algorithm runs quickly with a handful of items but really slows down with more items.
+  - “All combinations of X” usually point to an NP-complete problem.
+ -  Do you have to calculate “every possible version” of X because you can’t break it down into smaller sub-problems? Might be NP-complete.
+  - If your problem involves a sequence (such as a sequence of cities, like traveling salesperson), and it’s hard to solve, it might be NP-complete.
+  - If your problem involves a set (like a set of radio stations) and it’s hard to solve, it might be NP-complete.
+  - Can you restate your problem as the set-covering problem or the traveling-salesperson problem? Then your problem is definitely NP-complete.
+  
+## Recap
+- Greedy algorithms optimize locally, hoping to end up with a global optimum.
+- NP-complete problems have no known fast solution.
+- If you have an NP-complete problem, your best bet is to use an approximation algorithm.
+- Greedy algorithms are easy to write and fast to run, so they make good approximation algorithms.
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sets/power-set
+
+* see more https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sets/knapsack-problem
