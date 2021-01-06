@@ -606,3 +606,25 @@ djikstraAlgorithm(startNode) {
 - The values in the cells are usually what you’re trying to optimize.
 - Each cell is a subproblem, so think about how you can divide your problem into subproblems.
 - There’s no single formula for calculating a dynamic-programming solution.
+
+# Chapter 10. K-nearest neighbors
+
+- <b>k-nearest neighbors (KNN)</b> algorithm for classification
+  - Classification = categorization into a group
+  - Regression = predicting a response (like a number)
+  
+- Cosine similarity doesn’t measure the distance between two vectors. Instead, it compares the angles of the two vectors.
+- KNN is a really useful algorithm, and it’s your introduction to the magical world of machine learning! Machine learning is all about making your computer more intelligent. 
+- OCR stands for optical character recognition. It means you can take a photo of a page of text, and your computer will automatically read the text for you. Google uses OCR to digitize books.
+  - Generally speaking, OCR algorithms measure lines, points, and curves.
+  - Then, when you get a new character, you can extract the same features from it.
+  - The first step of OCR, where you go through images of numbers and extract features, is called training. Most machine-learning algorithms have a training step: before your computer can do the task, it must be trained. 
+  - Spam filters use another simple algorithm called the Naive Bayes classifier. First, you train your Naive Bayes classifier on some data.
+    - Naive Bayes figures out the probability that something is likely to be spam. It has applications similar to KNN.
+## Recap
+I hope this gives you an idea of all the different things you can do with KNN and with machine learning! Machine learning is an interesting field that you can go pretty deep into if you decide to:
+- KNN is used for classification and regression and involves looking at the k-nearest neighbors.
+- Classification = categorization into a group.
+- Regression = predicting a response (like a number).
+- Feature extraction means converting an item (like a fruit or a user) into a list of numbers that can be compared.
+- Picking good features is an important part of a successful KNN algorithm.
